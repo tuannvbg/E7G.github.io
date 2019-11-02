@@ -1,0 +1,10 @@
+<?php 
+define('FILE_DSP','0'); 
+define('FILE_DMT','300'); 
+define('F_LINK_COUNTDOWN','3'); 
+define('F_AD',''); 
+define('SITEDOWN_TURN','1'); 
+define('LDN',''); 
+define('SITELIST_BAN','1'); 
+define('SITEBAN_LIST',''); 
+ ?>
