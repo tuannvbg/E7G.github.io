@@ -4,8 +4,11 @@
     <meta charset="utf-8">
     <meta name="author" content="dongfeng">
     <title></title>
-    <script>
+    <!--<script>
     var musics = [
+"DAISHI DANCE-Take Me Hand",
+"虎二-一百万个可能.mp3",
+"许嵩-河山大好.mp3",
 "Alan Walker_Alone.mp3",
 "Alan Walker_Avem (The Aviation Theme).mp3",
 "Alan Walker_Faded.mp3",
@@ -66,7 +69,7 @@ window.onload = function() {
         player.play();
     }
 }
-    </script>
+    </script>-->
 
     <style>
         #typeSel {
@@ -80,10 +83,108 @@ window.onload = function() {
 <select id="typeSel">
     <option value="sequence">顺序播放</option>
     <option value="random">随机播放</option>
-</select><br />
-<audio id="player" >你的浏览器不支持audio元素</audio>
-<button onclick="next()">下一个</button>
-<button onclick="above()">上一个</button>
+</select>
+	<div id="music">
+		<div id="container">
+			<h3 id="musicName">mine音乐播放器</h3>
+			<audio src="login.wav" autoplay="autoplay" controls="controls" controlsList="nodownload" οncοntextmenu="return false" id="audio"></audio>
+			<div class="btn">
+				<button id="play">play</button>
+				<button id="pause">pause</button>
+				<button id="prev">prev</button>
+				<button id="next">next</button>
+				<button id="mine">mine</button>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+			var play = document.getElementById('play'),
+				pause = document.getElementById('pause'),
+				prev = document.getElementById('prev'),
+				next = document.getElementById('next'),
+				musicName = document.getElementById('musicName'),
+				//musicImg = document.getElementById('musicImg'),
+				bgImage = document.getElementById('music'),
+				mine = document.getElementById('mine');
+	
+			var music = new Array();
+			music = [
+	"许嵩-河山大好.mp3",
+	"周杰伦-龙卷风.mp3",
+	"周杰伦-菊花台.flac",
+	"周杰伦-夜曲.mp3",
+	"周杰伦-东风破.flac",
+	"周杰伦-七里香.mp3",
+	"周杰伦-稻香.flac",
+	"DAISHI DANCE-Take Me Hand.mp3",
+	"虎二-一百万个可能.mp3",
+	"Alan Walker_Alone.mp3",
+	"Alan Walker_Avem (The Aviation Theme).mp3",
+	"Alan Walker_Faded.mp3",
+	"Alan Walker_On My Way.mp3",
+	"Alan Walker_Sad Sometimes.mp3",
+	"Alan Walker_The Spectre.mp3",
+	"All Falls Down.mp3",
+	"en_嚣张.mp3",
+	"Hello.mp3",
+	"Honne_Crying Over You .mp3",
+	"SHAUN_Way Back Home.mp3",
+	"Wham!_Last Christmas.mp3",
+	"周杰伦 - 稻香 (Demo)(320).mp3",
+	"爱吃巧乐兹_圈住你.mp3",
+	"白羊.mp3",
+	"老狼_同桌的你 (Live).mp3",
+	"萧忆情_小嫦娥.mp3",
+	"音阙诗听_芒种.mp3"];
+			var len = music.length;
+			var num = 0;
+			var a="";
+			// 播放
+			play.onclick = function(){
+				if(audio.paused){
+					audio.play();
+				}
+			}
+	
+			// 暂停
+			pause.onclick = function(){
+				if(audio.played){
+					audio.pause();
+				}
+			}
+	
+			// 上一首
+			prev.onclick = function(){
+				num = (num + len - 1) % len;
+				audio.src = music[num] ;
+				musicName.innerHTML = music[num];
+				//bgImage.style.backgroundImage = 'url(./image/' + music[num] + '.jpg)';
+				//musicImg.src = './image/' + music[num] + '.jpg';
+				audio.play();
+			}
+	
+			// 下一首
+			next.onclick = function(){
+				num = (num + 1) % len;
+				audio.src =  music[num] ;
+				musicName.innerHTML = music[num];
+				//bgImage.style.backgroundImage = 'url(./image/' + music[num] + '.jpg)';
+				//musicImg.src = './image/' + music[num] + '.jpg';
+				audio.play();
+			}
+			mine.onclick = function(){
+				num = (num + 1) % len;
+				var a = prompt("请输入你想播放的音频地址",a);
+				audio.src = a;
+				musicName.innerHTML = a;
+				audio.play();
+			}
+	
+			// 自动切换下一首
+			audio.addEventListener('ended',function(){
+				next.onclick();
+			},false);
+		</script>
 </body>
 
 </html> 

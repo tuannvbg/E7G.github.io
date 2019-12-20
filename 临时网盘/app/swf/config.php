@@ -1,9 +1,0 @@
-<?php 
-define('SWF_LIT','10'); 
-define('SWF_DMT','60'); 
-define('LINK_COUNTDOWN','3'); 
-define('SWF_DSP','128'); 
-define('SWF_LSP','1000'); 
-define('SWF_LMT','30'); 
-define('AD',''); 
- ?>
