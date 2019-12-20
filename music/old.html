@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="dongfeng">
+    <title></title>
+    <script>
+    var musics = [
+"Alan Walker_Alone.mp3",
+"Alan Walker_Avem (The Aviation Theme).mp3",
+"Alan Walker_Faded.mp3",
+"Alan Walker_On My Way.mp3",
+"Alan Walker_Sad Sometimes.mp3",
+"Alan Walker_The Spectre.mp3",
+"All Falls Down.mp3",
+"en_嚣张.mp3",
+"Hello.mp3",
+"Honne_Crying Over You .mp3",
+"SHAUN_Way Back Home.mp3",
+"Wham!_Last Christmas.mp3",
+"周杰伦 - 稻香 (Demo)(320).mp3",
+"爱吃巧乐兹_圈住你.mp3",
+"白羊.mp3",
+"老狼_同桌的你 (Live).mp3",
+"萧忆情_小嫦娥.mp3",
+"音阙诗听_芒种.mp3"
+];
+//定义正在播放的音频的索引
+var index = 0;
+var abo=0;
+//记录顺序和随机的变量
+var playType;
+window.onload = function() {
+    var typeSel = document.getElementById('typeSel');
+    //当用户更改下拉菜单选项时，改变播放方式
+    typeSel.onchange = function() {
+        console.log(typeSel.value)
+        window.playType = typeSel.value;
+    }
+    var player = document.getElementById('player');
+    //页面加载时播放的第一个文件
+    player.src = musics[index];
+	     function next() {
+			player.pause();
+			abo = index ;
+			player.src = musics[++index % musics.length];
+			player.play();
+		}
+	     function above() {
+			player.pause();
+			player.src = musics[abo];
+			player.play();
+		}
+    player.addEventListener('ended',myFunction)
+    function myFunction() {
+        
+        if(playType == 'random') {
+            index = Math.floor(Math.random() * musics.length);
+            console.log(index)
+            player.src = musics[index];
+        } else {
+		    abo = index;
+            //播放下一个音频
+            player.src = musics[++index % musics.length];
+        }
+        player.play();
+    }
+}
+    </script>
+
+    <style>
+        #typeSel {
+    margin-bottom: 30px;
+    width: 160px;
+}</style>
+</head>
+
+<body>
+<h2>音乐播放器</h2>
+<select id="typeSel">
+    <option value="sequence">顺序播放</option>
+    <option value="random">随机播放</option>
+</select><br />
+<audio id="player" >你的浏览器不支持audio元素</audio>
+<button onclick="next()">下一个</button>
+<button onclick="above()">上一个</button>
+</body>
+
+</html> 
