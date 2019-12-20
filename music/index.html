@@ -11,7 +11,6 @@
 			border-radius: 10px;
 			margin: 20px auto;
 			position: relative;
-			background: url(背景.jpg) no-repeat;
 			background-size: cover;
 			text-align: center;
 		}
@@ -53,14 +52,15 @@
 <body>
 	<div id="music">
 		<div id="container">
-			<h3 id="musicName">许嵩-河山大好</h3>
-			<!--<img src="image/一月，银装轻舞-紫竹笛韵.jpg" id="musicImg">-->
-			<audio src="许嵩-河山大好.mp3" controls="controls" controlsList="nodownload" οncοntextmenu="return false" id="audio"></audio>
+			<h3 id="musicName">mine音乐播放器</h3>
+			<img src="背景.jpg" id="musicImg">
+			<audio src="login.wav" autoplay="autoplay" controls="controls" controlsList="nodownload" οncοntextmenu="return false" id="audio"></audio>
 			<div class="btn">
 				<button id="play">play</button>
 				<button id="pause">pause</button>
 				<button id="prev">prev</button>
 				<button id="next">next</button>
+				<button id="mine">mine</button>
 			</div>
 		</div>
 	</div>
@@ -71,13 +71,20 @@
 			next = document.getElementById('next'),
 			musicName = document.getElementById('musicName'),
 			//musicImg = document.getElementById('musicImg'),
-			bgImage = document.getElementById('music');
+			bgImage = document.getElementById('music'),
+			mine = document.getElementById('mine');
 
 		var music = new Array();
 		music = [
-"DAISHI DANCE-Take Me Hand",
-"虎二-一百万个可能.mp3",
 "许嵩-河山大好.mp3",
+"周杰伦-龙卷风.mp3",
+"周杰伦-菊花台.flac",
+"周杰伦-夜曲.mp3",
+"周杰伦-东风破.flac",
+"周杰伦-七里香.mp3",
+"周杰伦-稻香.flac",
+"DAISHI DANCE-Take Me Hand.mp3",
+"虎二-一百万个可能.mp3",
 "Alan Walker_Alone.mp3",
 "Alan Walker_Avem (The Aviation Theme).mp3",
 "Alan Walker_Faded.mp3",
@@ -98,7 +105,7 @@
 "音阙诗听_芒种.mp3"];
 		var len = music.length;
 		var num = 0;
-
+		var a="";
 		// 播放
 		play.onclick = function(){
 			if(audio.paused){
@@ -130,6 +137,13 @@
 			musicName.innerHTML = music[num];
 			//bgImage.style.backgroundImage = 'url(./image/' + music[num] + '.jpg)';
 			//musicImg.src = './image/' + music[num] + '.jpg';
+			audio.play();
+		}
+		mine.onclick = function(){
+			num = (num + 1) % len;
+			var a = prompt("请输入你想播放的音频地址",a);
+			audio.src = a;
+			musicName.innerHTML = a;
 			audio.play();
 		}
 
