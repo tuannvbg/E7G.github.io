@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"> 
+		<title>music</title>
+		<script type="text/javascript">
+			function getQueryString(name) {
+			    var result = window.location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+			    if (result == null || result.length < 1) {
+			        return "";
+			    }
+			    return result[1];
+			}
+		</script>
+	</head>
+	<body>
+		<audio controls id="ao">
+		  您的浏览器不支持该音频格式。
+		</audio>
+		<script type="text/javascript">
+			var ao = document.getElementById('ao');
+			var url = getQueryString("url");
+			ao.innerHTML='<source src='+url+' type="audio/mpeg">'
+		</script>
+	</body>
+</html>
