@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<script src="js/jquery-3.3.1.js"></script>
+<header>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="js/layui/css/layui.css">
+    <link rel="stylesheet" href="css/style.css">
+</header>
+
+<body>
+    <div class="back-img"></div>
+    <div class="back-black"></div>
+    <div class="controls">
+        <div class="cont-btn">
+            <a href="javascript:return ;" id="previous" class="layui-icon">&#xe603;</a>
+            <a href="javascript:return ;" id="media" class="layui-icon">&#xe651;</a>
+            <a href="javascript:return ;" id="next" class="layui-icon">&#xe602;</a>
+        </div>
+        <div class="progress">
+            <div class="length">
+                <div class="nowlength">
+                    <i></i>
+                </div>
+            </div>
+        </div>
+        <div class="function">
+            <div class="voice-box">
+                <label title="音量" for="yinliang"><i class="voice-btn"></i></label>
+                <input id="yinliang" type="checkbox" name="SY" hidden>
+                <div class="adjuster">
+                    <div class="size"></div>
+                    <div class="size">
+                        <i></i>
+                    </div>
+                </div>
+            </div>
+            <i title="顺序循环" class="Play-mode"></i>
+        </div>
+    </div>
+    <div class="center">
+        <input type="text" id="text" value="" placeholder="歌名、歌手">
+        <input type="text" id="number" value="10" placeholder="条数">
+        <button id="query">搜索</button>
+        <div class="music-box">
+            <table id="music-list">
+                <thead>
+                    <tr>
+                        <th>歌手</th>
+                        <th>歌名</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <audio id="music" autoplay loop>
+        您的浏览器不支持 audio 标签。
+    </audio>
+    <img id="img" src="" width="100px" height="100px" alt="">
+    <script src="js/app_music.js"></script>
+    <script src="js/layui/layui.js"></script>
+    <script src="js/playmusic.js"></script>
+    <script>
+        //进度条、播音盒、audio、暂停/播放键、下一首、上一首、播放进度条、歌曲、大小
+        document.getElementById("query").onclick = function () {
+            var value = document.getElementById("text").value,
+                number = document.getElementById("number").value;
+
+            play({
+                MusicName: value,
+                Size: number,
+                FinalProgressBar: document.getElementsByClassName("length")[0],
+                Tbody: document.getElementById("tbody"),
+                Audio: document.getElementById("music"),
+                MediaKey: document.getElementById("media"),
+                Previous: document.getElementById("previous"),
+                Next: document.getElementById("next"),
+                NowPrevious: document.getElementsByClassName("nowlength")[0],
+                NoInput: "请输入",
+                img: document.getElementById("img"),
+                TimeBox: null,
+                voice: {
+                    big: document.getElementsByClassName("size")[0],
+                    small: document.getElementsByClassName("size")[1]
+                },
+                PlayMode: document.getElementsByClassName("Play-mode")[0]
+            });
+        };
+
+        //QQ音乐回调函数
+        function callback(e) {
+            play.callback(e);
+        }
+    </script>
+</body>
+
+</html>
